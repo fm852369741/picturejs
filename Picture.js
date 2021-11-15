@@ -39,16 +39,15 @@ const PictureJS = (() => {
                     this.imageDimensions = [this.image.width, this.image.height];
                     this.container.appendChild(canvas);
 
-                    callback(canvas, context, this.container, ...args);
+                    const [lensCanvas, lensContext] = callback(canvas, context, this.container, ...args);
+                    this.lens.canvas = lensCanvas;
+                    this.lens.context = lensContext;
                 }
             }
 
             loadLens(imageSource, imageContext, container, dimensions) {
                 const canvas = document.createElement('canvas');
                 const context = canvas.getContext('2d');
-
-                this.lens.canvas = canvas;
-                this.lens.context = context;
 
                 canvas.width = imageSource.width;
                 canvas.height = imageSource.height;
@@ -62,6 +61,8 @@ const PictureJS = (() => {
                 });
 
                 container.appendChild(canvas);
+
+                return [canvas, context];
             }
         },
         Preview: class {

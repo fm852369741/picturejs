@@ -1,4 +1,4 @@
-const size = 1000;
+const size = window.innerWidth/2;
 const image = new PictureJS.RawImage('https://picsum.photos/'+size);
 const preview = PictureJS.Preview.output('.output');
 

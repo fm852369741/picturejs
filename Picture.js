@@ -12,6 +12,9 @@ const PictureJS = (() => {
                 }
                 
                 this.lens = {
+                    load: () => {
+                        this.container.appendChild(this.lens.canvas);
+                    },
                     quit: () => {
                         this.container.removeChild(this.lens.canvas);
                     }

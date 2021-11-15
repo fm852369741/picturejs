@@ -5,15 +5,15 @@ const PictureJS = (() => {
                 this.image = new Image();
                 this.URL = URL;
 
-                this.Image = {
+                this.self = {
                     on: (event, callback) => {
                         this.Image.canvas.addEventListener(event, callback());
                     }
                 }
 
-                this.Lens = {
+                this.lens = {
                     quit: () => {
-                        this.container.removeChild(this.Lens.canvas);
+                        this.container.removeChild(this.lens.canvas);
                     }
                 }
             }
@@ -26,8 +26,8 @@ const PictureJS = (() => {
                 const canvas = document.createElement('canvas');
                 const context = canvas.getContext('2d');
 
-                this.Image.canvas = canvas;
-                this.Image.context = context;
+                this.self.canvas = canvas;
+                this.self.context = context;
 
                 this.image.onload = () => {
                     canvas.width = this.image.width;
@@ -45,8 +45,8 @@ const PictureJS = (() => {
                 const canvas = document.createElement('canvas');
                 const context = canvas.getContext('2d');
 
-                this.Lens.canvas = canvas;
-                this.Lens.context = context;
+                this.lens.canvas = canvas;
+                this.lens.context = context;
 
                 canvas.width = imageSource.width;
                 canvas.height = imageSource.height;

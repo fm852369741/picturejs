@@ -12,6 +12,8 @@ const PictureJS = (() => {
                 }
 
                 this.lens = {
+                    canvas: undefined,
+                    context: undefined,
                     quit: () => {
                         this.container.removeChild(this.lens.canvas);
                     }

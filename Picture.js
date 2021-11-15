@@ -8,13 +8,12 @@ const PictureJS = (() => {
                 this.self = {
                     on: (event, callback) => {
                         console.log(this.self.canvas);
+                        console.log(this.lens.canvas);
                         // this.self.canvas.addEventListener(event, callback);
                     }
                 }
 
                 this.lens = {
-                    canvas: undefined,
-                    context: undefined,
                     quit: () => {
                         this.container.removeChild(this.lens.canvas);
                     }

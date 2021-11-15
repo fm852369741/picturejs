@@ -8,7 +8,7 @@ const PictureJS = (() => {
                 this.self = {
                     on: (event, callback) => {
                         console.log(this.self.canvas);
-                        this.self.canvas.addEventListener(event, callback);
+                        // this.self.canvas.addEventListener(event, callback);
                     }
                 }
 

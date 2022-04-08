@@ -25,7 +25,7 @@ const PictureJS = (() => {
             this.loadImage(this.container, (...args) => {
                args[args.length - 1].innerHTML = "";
                this.onImageFinishLoading(...args);
-            }, [ ...args, this.container ])
+            }, [ ...this.onImageFinishLoadingArgs, this.container ])
          }
 
          loadImage(container, callback, args) {

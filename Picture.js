@@ -25,7 +25,7 @@ const PictureJS = (() => {
             this.loadImage(this.container, (...args) => {
                args[args.length - 1].innerHTML = "";
                this.onImageFinishLoading(...args);
-            }, [ ...this.onImageFinishLoadingArgs, this.container ])
+            }, this.onImageFinishLoadingArgs)
          }
 
          loadImage(container, callback, args) {
@@ -38,7 +38,6 @@ const PictureJS = (() => {
             this.image.crossOrigin = "Anonymous";
 
             this.onImageFinishLoading = callback;
-            this.onImageFinishLoadingArgs = args;
 
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
@@ -54,6 +53,8 @@ const PictureJS = (() => {
                this.imageDimensions = [this.image.width, this.image.height];
                const [lensCanvas, lensContext] = callback(canvas, context, this.container, ...args);
                
+               this.onImageFinishLoadingArgs = [...args, this.container ]
+
                this.container.appendChild(canvas);
                this.lens.canvas = lensCanvas;
                this.lens.context = lensContext;

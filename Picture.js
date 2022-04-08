@@ -22,8 +22,10 @@ const PictureJS = (() => {
          }
 
          refresh() {
-            this.container.innerHTML = "";
-            this.loadImage(this.container, this.onImageFinishLoading, this.onImageFinishLoadingArgs)
+            this.loadImage(this.container, (...args) => {
+               args[args.length - 1].innerHTML = "";
+               this.onImageFinishLoading(...args);
+            }, [ ...args, this.container ])
          }
 
          loadImage(container, callback, args) {
@@ -50,9 +52,9 @@ const PictureJS = (() => {
                context.drawImage(this.image, 0, 0, canvas.width, canvas.height);
 
                this.imageDimensions = [this.image.width, this.image.height];
-               this.container.appendChild(canvas);
-
                const [lensCanvas, lensContext] = callback(canvas, context, this.container, ...args);
+               
+               this.container.appendChild(canvas);
                this.lens.canvas = lensCanvas;
                this.lens.context = lensContext;
             }

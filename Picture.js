@@ -22,9 +22,9 @@ const PictureJS = (() => {
          }
 
          refresh() {
-            this.loadImage(this.container, (...args) => {
-               args[args.length - 1].innerHTML = "";
-               this.onImageFinishLoading(...args);
+            this.loadImage(this.container, () => {
+               this.onImageFinishLoadingArgs[this.onImageFinishLoadingArgs.length - 1].innerHTML = "";
+               this.onImageFinishLoading(this.onImageFinishLoadingArgs);
             }, [ ...this.onImageFinishLoadingArgs, this.container ])
          }
 

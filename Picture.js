@@ -21,11 +21,13 @@ const PictureJS = (() => {
             }
          }
 
+         destory() {
+            this.container.innerHTML = "";
+         }
+
          refresh() {
-            this.loadImage(this.container, () => {
-               this.onImageFinishLoadingArgs[this.onImageFinishLoadingArgs.length - 1].innerHTML = "";
-               this.onImageFinishLoading(this.onImageFinishLoadingArgs);
-            }, [ ...this.onImageFinishLoadingArgs, this.container ])
+            this.destory();
+            this.onImageFinishLoading(...this.onImageFinishLoadingArgs)
          }
 
          loadImage(container, callback, args) {

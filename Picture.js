@@ -47,16 +47,15 @@ const PictureJS = (() => {
             this.self.canvas = canvas;
             this.self.context = context;
 
-            this.onImageFinishLoadingArgs = args
-
             this.image.onload = () => {
                canvas.width = this.image.width;
                canvas.height = this.image.height;
                context.drawImage(this.image, 0, 0, canvas.width, canvas.height);
 
                this.imageDimensions = [this.image.width, this.image.height];
-               const [lensCanvas, lensContext] = callback(canvas, context, this.container, ...args);
-
+               this.onImageFinishLoadingArgs = [canvas, context, this.container, ...args]               
+               
+               const [lensCanvas, lensContext] = callback(...this.onImageFinishLoadingArgs);
                this.container.appendChild(canvas);
                this.lens.canvas = lensCanvas;
                this.lens.context = lensContext;

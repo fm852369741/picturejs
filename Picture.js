@@ -27,7 +27,7 @@ const PictureJS = (() => {
 
          refresh() {
             this.destory();
-            this.onImageFinishLoading(...this.onImageFinishLoadingArgs)
+            this.loadImage(this.container, this.onImageFinishLoading, this.onImageFinishLoadingArgs)
          }
 
          loadImage(container, callback, args) {

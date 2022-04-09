@@ -25,7 +25,7 @@ const PictureJS = (() => {
             this.loadImage(this.container, (...args) => {
                args[args.length - 1].innerHTML = "";
                this.onImageFinishLoading(...args);
-            }, this.onImageFinishLoadingArgs)
+            }, [ ...this.onImageFinishLoadingArgs, this.container ])
          }
 
          loadImage(container, callback, args) {
@@ -45,6 +45,8 @@ const PictureJS = (() => {
             this.self.canvas = canvas;
             this.self.context = context;
 
+            this.onImageFinishLoadingArgs = args
+
             this.image.onload = () => {
                canvas.width = this.image.width;
                canvas.height = this.image.height;
@@ -52,8 +54,6 @@ const PictureJS = (() => {
 
                this.imageDimensions = [this.image.width, this.image.height];
                const [lensCanvas, lensContext] = callback(canvas, context, this.container, ...args);
-               
-               this.onImageFinishLoadingArgs = [...args, this.container ]
 
                this.container.appendChild(canvas);
                this.lens.canvas = lensCanvas;
